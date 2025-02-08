@@ -4,11 +4,11 @@ import Navbar from "./components/Navbar";
 import AuthRoutes from "./routes/AuthRoutes";
 import GuestRoutes from "./routes/GuestRoutes";
 import Dashboard from "./pages/users/Dashboard";
-import CreateEvent from "./pages/Events/CreateEvent";
 import UpdateEvent from "./pages/events/UpdateEvent";
+import EventList from "./pages/events/EventList";
 import Login from "./pages/users/Login";
 import Register from "./pages/users/Register";
-import EventList from "./pages/events/EventList";
+import CreateNewEvent from "./pages/events/CreateNewEvent";
 
 const App = () => {
   return (
@@ -20,7 +20,7 @@ const App = () => {
         <Route element={<AuthRoutes />}>
           <Route index path="events" element={<EventList />} />
           <Route path="dashboard" element={<Dashboard />} />
-          <Route path="create-event" element={<CreateEvent />} />
+          <Route path="create-event" element={<CreateNewEvent />} />
           <Route path="update" element={<UpdateEvent />} />
         </Route>
 

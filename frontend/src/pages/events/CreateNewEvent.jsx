@@ -3,7 +3,7 @@ import { createEvent } from "../../controllers/eventsController";
 import { useNavigate } from "react-router";
 import { EventContext } from "../../contexts/EventContext";
 
-export default function CreateEvent() {
+export default function CreateNewEvent() {
   const { events, setEvents } = useContext(EventContext);
   const eventCategories = [
     "Tech Event",
