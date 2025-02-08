@@ -1,4 +1,12 @@
 /* eslint-disable react/prop-types */
+const categoryColors = {
+  "Tech Event": "bg-blue-500",
+  "Food Event": "bg-green-500",
+  "Music Concert": "bg-purple-500",
+  "Sports Event": "bg-red-500",
+  Other: "bg-yellow-500",
+};
+
 export default function Event({ event, children, isButton = false }) {
   return (
     <div className="flex justify-center items-center">
@@ -14,7 +22,12 @@ export default function Event({ event, children, isButton = false }) {
               {children}
             </div>
           )}
-          <div className="absolute top-0 right-0 bg-teal-500 text-white px-2 py-1 m-2 rounded-md text-sm font-semibold">
+          {/* Dynamic Category Color */}
+          <div
+            className={`absolute top-0 right-0 text-white px-2 py-1 m-2 rounded-md text-sm font-semibold ${
+              categoryColors[event.category] || "bg-gray-500"
+            }`}
+          >
             {event.category}
           </div>
         </div>

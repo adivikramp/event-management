@@ -22,10 +22,10 @@ const Homepage = () => {
               Create an Event
             </NavLink>
             <NavLink
-              to="/features"
+              to="/events"
               className="border border-gray-600 px-6 py-3 rounded-lg text-sm md:text-lg font-semibold hover:bg-gray-800 transition"
             >
-              Explore Features
+              See Events
             </NavLink>
           </div>
         </section>

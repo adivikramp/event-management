@@ -6,9 +6,7 @@ import { UserContext } from "../contexts/UserContext";
 
 const MobileNav = () => {
   const [navOpen, setNavOpen] = useState(false);
-
   const { user, setUser } = useContext(UserContext);
-
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -17,8 +15,11 @@ const MobileNav = () => {
       localStorage.removeItem("token");
       localStorage.removeItem("email");
       navigate("/");
+      setNavOpen(false);
     }
   };
+
+  const closeNav = () => setNavOpen(false);
 
   return (
     <>
@@ -28,7 +29,7 @@ const MobileNav = () => {
 
       {navOpen && (
         <div className="fixed flex flex-col md:hidden left-0 top-0 w-[60%] h-full border-r border-r-gray-900 bg-[#000300] ease-in-out duration-500">
-          <NavLink to="/">
+          <NavLink to="/" onClick={closeNav}>
             <MdEventNote className="text-white h-12 w-12 m-4 cursor-pointer" />
           </NavLink>
           {user.email ? (
@@ -36,18 +37,21 @@ const MobileNav = () => {
               <NavLink
                 to="/events"
                 className="px-4 py-2 rounded-xl m-2 cursor-pointer duration-300 hover:bg-blue-500"
+                onClick={closeNav}
               >
                 Event List
               </NavLink>
               <NavLink
                 to="/create-event"
                 className="px-4 py-2 rounded-xl m-2 cursor-pointer duration-300 hover:bg-blue-500"
+                onClick={closeNav}
               >
                 Create Event
               </NavLink>
               <NavLink
                 to="/dashboard"
                 className="px-4 py-2 rounded-xl m-2 cursor-pointer duration-300 hover:bg-blue-500"
+                onClick={closeNav}
               >
                 User Dashboard
               </NavLink>
@@ -63,12 +67,14 @@ const MobileNav = () => {
               <NavLink
                 to="/login"
                 className="px-4 py-2 rounded-xl m-2 cursor-pointer duration-300 hover:bg-blue-500"
+                onClick={closeNav}
               >
                 Sign In
               </NavLink>
               <NavLink
                 to="/signup"
                 className="px-4 py-2 rounded-xl m-2 cursor-pointer duration-300 hover:bg-blue-500"
+                onClick={closeNav}
               >
                 Sign Up
               </NavLink>

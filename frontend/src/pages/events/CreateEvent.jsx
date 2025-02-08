@@ -77,9 +77,9 @@ export default function CreateEvent() {
   };
 
   return (
-    <section className="max-w-4xl mx-auto p-8 bg-gray-900 text-white rounded-lg shadow-lg mt-32">
+    <section className="w-[400px] md:max-w-4xl mx-auto p-8 bg-gray-900 text-white rounded-lg shadow-lg mt-32">
       <h1 className="text-2xl font-bold mb-6 text-center">Create Event</h1>
-      <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-8">
+      <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="flex flex-col gap-4">
           <input
             type="text"
