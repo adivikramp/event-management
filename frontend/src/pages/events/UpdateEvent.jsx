@@ -64,7 +64,7 @@ export default function UpdateEvent() {
   };
 
   return (
-    <section className="w-[400px] md:max-w-3xl mx-auto p-8 bg-gray-900 text-white rounded-lg shadow-lg mt-40">
+    <section className="w-[400px] md:w-[800px] mx-auto p-8 bg-gray-900 text-white rounded-lg shadow-lg mt-40">
       <h1 className="text-2xl font-bold mb-6 text-center">Update Event</h1>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
