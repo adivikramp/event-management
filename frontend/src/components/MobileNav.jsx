@@ -34,6 +34,12 @@ const MobileNav = () => {
           {user.email ? (
             <>
               <NavLink
+                to="/events"
+                className="px-4 py-2 rounded-xl m-2 cursor-pointer duration-300 hover:bg-blue-500"
+              >
+                Event List
+              </NavLink>
+              <NavLink
                 to="/create-event"
                 className="px-4 py-2 rounded-xl m-2 cursor-pointer duration-300 hover:bg-blue-500"
               >

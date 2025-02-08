@@ -19,6 +19,14 @@ const EventSchema = new Schema(
       type: Date,
       required: true,
     },
+    category: {
+      type: String,
+      required: true,
+    },
+    image: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );

@@ -1,6 +1,6 @@
 /* --------------------------------------------- Get existing events --------------------------------------------- */
 const getEvents = async () => {
-  const response = await fetch("http://localhost:8000/api/events");
+  const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}api/events`);
   const data = await response.json();
 
   if (!response.ok) {
@@ -12,7 +12,7 @@ const getEvents = async () => {
 
 /* --------------------------------------------- Get user's existing events --------------------------------------------- */
 const getUserEvents = async () => {
-  const response = await fetch("http://localhost:8000/api/events/user", {
+  const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}api/events/user`, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
@@ -28,18 +28,18 @@ const getUserEvents = async () => {
 };
 
 /* --------------------------------------------- Create new event --------------------------------------------- */
-const createEvent = async (title, body, date) => {
-  if (!title || !body || !date) {
+const createEvent = async (title, body, date, category, image) => {
+  if (!title || !body || !date || !image || !category) {
     throw Error("all fields are required");
   }
 
-  const response = await fetch("http://localhost:8000/api/events", {
+  const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}api/events`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
-    body: JSON.stringify({ title, body, date }),
+    body: JSON.stringify({ title, body, date, image, category }),
   });
 
   const data = await response.json();
@@ -53,9 +53,9 @@ const createEvent = async (title, body, date) => {
   return data;
 };
 
-/* --------------------------------------------- Delete a event --------------------------------------------- */
+/* --------------------------------------------- Delete an event --------------------------------------------- */
 const deleteEvent = async (_id) => {
-  const response = await fetch(`http://localhost:8000/api/events/${_id}`, {
+  const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}api/events/${_id}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -72,18 +72,18 @@ const deleteEvent = async (_id) => {
 };
 
 /* --------------------------------------------- Update an event --------------------------------------------- */
-const updateEvent = async (_id, title, body, date) => {
-  if (!title || !body || !date) {
+const updateEvent = async (_id, title, body, date, category) => {
+  if (!title || !body || !date || !category) {
     throw Error("All fields are required");
   }
 
-  const response = await fetch(`http://localhost:8000/api/events/${_id}`, {
+  const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}api/events/${_id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
-    body: JSON.stringify({ title, body, date }),
+    body: JSON.stringify({ title, body, date, category }),
   });
 
   const data = await response.json();

@@ -30,11 +30,11 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 w-full bg-black flex justify-between items-center h-20 md:h-24 px-4 text-white z-20">
+    <div className="fixed top-0 left-0 w-full bg-black flex justify-between items-center h-20 px-4 text-white z-20">
       <div className="w-full md:w-4/5 flex justify-between items-center mx-auto">
         {/* Logo */}
         <NavLink to="/">
-          <MdEventNote className="text-white h-12 w-12 cursor-pointer" />
+          <MdEventNote className="text-white h-10 w-10 cursor-pointer" />
         </NavLink>
 
         {/* Desktop Navigation */}
@@ -42,6 +42,12 @@ const Navbar = () => {
           <div className="hidden md:flex">
             {user.email ? (
               <>
+                <NavLink
+                  to="/events"
+                  className="px-4 py-2 rounded-xl m-2 cursor-pointer duration-300 hover:bg-blue-500"
+                >
+                  Event List
+                </NavLink>
                 <NavLink
                   to="/create-event"
                   className="px-4 py-2 rounded-xl m-2 cursor-pointer duration-300 hover:bg-blue-500"

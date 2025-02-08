@@ -48,15 +48,15 @@ const Register = () => {
         email: formData.email,
         events: [],
       });
-      // Navigate to dashboard
-      navigate("/dashboard");
+      // Navigate to events
+      navigate("/events");
     } catch (error) {
       setError(error.message);
     }
   }
 
   return (
-    <section className="min-h-screen bg-black flex flex-col justify-center items-center">
+    <section className="min-h-screen bg-black flex flex-col justify-center items-center pt-16">
       <div
         className="mx-auto w-[360px] md:w-[480px] flex flex-col rounded-2xl py-6 px-10"
         style={{ boxShadow: "0 4px 28px rgba(255, 255, 255, 0.4)" }}
@@ -111,6 +111,7 @@ const Register = () => {
             </button>
           </div>
         </form>
+        {error && <p className="text-red-500 my-4 text-center ">{error}</p>}
       </div>
       <p className="text-gray-500 text-center mt-4">
         Have an account?
@@ -119,8 +120,6 @@ const Register = () => {
           Sign In
         </NavLink>
       </p>
-
-      {error && <p>Error: {error}</p>}
     </section>
   );
 };

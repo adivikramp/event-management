@@ -40,7 +40,7 @@ const Login = () => {
       // Update the user state
       setUser({ email: formData.email, events: [] });
       // Navigate to dashboard
-      navigate("/dashboard");
+      navigate("/events");
     } catch (error) {
       setError(error.message);
     }
@@ -89,6 +89,7 @@ const Login = () => {
             </button>
           </div>
         </form>
+        {error && <p className="text-red-500 my-4 text-center ">{error}</p>}
       </div>
       <p className="text-gray-500 text-center mt-4">
         Do not have an account?
@@ -97,8 +98,6 @@ const Login = () => {
           Sign up
         </NavLink>
       </p>
-
-      {error && <p>Error: {error}</p>}
     </section>
   );
 };

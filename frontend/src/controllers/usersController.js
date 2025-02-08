@@ -4,7 +4,7 @@ const loginUser = async (email, password) => {
     throw Error("All fields are required");
   }
 
-  const response = await fetch("http://localhost:8000/api/users/login", {
+  const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}api/users/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -34,7 +34,7 @@ const registerUser = async (email, password, confirmPassword) => {
     throw Error("Passwords do not match");
   }
 
-  const response = await fetch("http://localhost:8000/api/users/register", {
+  const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}api/users/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

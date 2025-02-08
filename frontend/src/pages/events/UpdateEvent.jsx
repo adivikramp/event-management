@@ -1,52 +1,62 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { EventContext } from "../../contexts/EventContext";
 import { updateEvent } from "../../controllers/eventsController";
 
 export default function UpdateEvent() {
-  // use Event Context
   const { events, setEvents } = useContext(EventContext);
+  const eventCategories = [
+    "Tech Event",
+    "Food Event",
+    "Music Concert",
+    "Sports Event",
+    "Other",
+  ];
 
-  // Error State
   const [error, setError] = useState(null);
-
-  // Use navigate hook
   const navigate = useNavigate();
-
-  // Use location hook
   const { state } = useLocation();
+
+  const formatDateForInput = (date) => {
+    const d = new Date(date);
+    return d.toISOString().slice(0, 16);
+  };
 
   // Form data state
   const [formData, setFormData] = useState({
-    title: state.title,
-    body: state.body,
-    date: state.date,
+    title: state.title || "",
+    body: state.body || "",
+    date: state.date ? formatDateForInput(state.date) : "",
+    category: state.category || "",
   });
 
-  const handleInput = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-
+  useEffect(() => {
     setFormData({
-      ...formData,
-      [name]: value,
+      title: state.title || "",
+      body: state.body || "",
+      date: state.date ? formatDateForInput(state.date) : "",
+      category: state.category || "",
     });
+  }, [state]);
+
+  const handleInput = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      // Update a post
       const data = await updateEvent(
         state._id,
         formData.title,
         formData.body,
-        formData.date
+        formData.date,
+        formData.category
       );
-      // Update post state
-      setEvents([...events, data.event]);
-      // navigate to dashboard
+      setEvents(
+        events.map((event) => (event._id === state._id ? data.event : event))
+      );
       navigate("/dashboard");
     } catch (error) {
       setError(error.message);
@@ -54,42 +64,62 @@ export default function UpdateEvent() {
   };
 
   return (
-    <section className="card">
-      <h1 className="title">Update Event</h1>
+    <section className="max-w-3xl mx-auto p-8 bg-gray-900 text-white rounded-lg shadow-lg mt-40">
+      <h1 className="text-2xl font-bold mb-6 text-center">Update Event</h1>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
           type="text"
           name="title"
           placeholder="Event Title"
-          className="input"
+          className="p-3 rounded bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
           value={formData.title}
           onChange={handleInput}
           autoFocus
         />
+
         <textarea
           name="body"
           placeholder="Content"
-          className="input"
-          rows="6"
+          className="p-3 rounded bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          rows="2"
           value={formData.body}
           onChange={handleInput}
         />
+
         <input
-          type="text"
+          type="datetime-local"
           name="date"
-          placeholder="Event Date"
-          className="input"
+          className="p-3 rounded bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
           value={formData.date}
           onChange={handleInput}
-          autoFocus
         />
-        <button className="btn" type="submit">
+
+        <label className="block text-gray-400">Event Category:</label>
+        <select
+          name="category"
+          value={formData.category}
+          onChange={handleInput}
+          className="p-3 rounded bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          required
+        >
+          <option value="">Select Category</option>
+          {eventCategories.map((category) => (
+            <option key={category} value={category}>
+              {category}
+            </option>
+          ))}
+        </select>
+
+        <button
+          className="bg-blue-600 hover:bg-blue-700 transition p-3 rounded text-white font-semibold"
+          type="submit"
+        >
           Update
         </button>
       </form>
 
-      {error && <p>Error: {error}</p>}
+      {error && <p className="text-red-500">Error: {error}</p>}
     </section>
   );
 }

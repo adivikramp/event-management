@@ -31,10 +31,10 @@ const getUserEvents = async (req, res) => {
 
 /* --------------------------------------------- Create new Event --------------------------------------------- */
 const newEvent = async (req, res) => {
-  const { title, body, date } = req.body;
+  const { title, body, date, image, category } = req.body;
 
   // Check the fields are not empty
-  if (!title || !body || !date) {
+  if (!title || !body || !date || !image || !category) {
     return res.status(400).json({ error: "All fields are required" });
   }
 
@@ -42,7 +42,7 @@ const newEvent = async (req, res) => {
   const user = await User.findById(req.user._id);
 
   try {
-    const event = await Event.create({ title, body, date, user: user._id });
+    const event = await Event.create({ title, body, date, image, category, user: user._id });
     res.status(200).json({ msg: "Post Call successful", event });
   } catch (error) {
     console.log(error);
@@ -81,10 +81,10 @@ const deleteEvent = async (req, res) => {
 /* --------------------------------------------- Update a Event --------------------------------------------- */
 const updateEvent = async (req, res) => {
   // Grab the data
-  const { title, body, date } = req.body;
+  const { title, body, date, category } = req.body;
 
   // Check the fields are not empty
-  if (!title || !body || !date) {
+  if (!title || !body || !date || !category) {
     return res.status(400).json({ error: "All fields are required" });
   }
 
@@ -107,7 +107,7 @@ const updateEvent = async (req, res) => {
   }
 
   try {
-    await event.updateOne({ title, body, date });
+    await event.updateOne({ title, body, date, category });
     return res.status(200).json({ msg: "Event was updated" });
   } catch (err) {
     console.log(err);
