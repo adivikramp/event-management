@@ -10,7 +10,7 @@ const categoryColors = {
 export default function Event({ event, children, isButton = false }) {
   return (
     <div className="flex justify-center items-center">
-      <div className="bg-white rounded-xl shadow-2xl overflow-hidden transform transition duration-500 hover:scale-105">
+      <div className="w-[400px] bg-white rounded-xl shadow-2xl overflow-hidden transform transition duration-500 hover:scale-105">
         <div className="relative">
           <img
             className="w-full h-64 object-cover"
