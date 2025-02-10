@@ -37,27 +37,23 @@ const Homepage = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="p-6 border border-gray-700 rounded-lg">
-              <h3 className="text-xl font-semibold mb-2">
-                Automated Scheduling
-              </h3>
+              <h3 className="text-xl font-semibold mb-2">Create Event</h3>
               <p className="text-gray-400">
-                Manage your event timeline with AI-powered scheduling tools.
+                Easily set up and customize events with our intuitive event
+                creation tools.
               </p>
             </div>
             <div className="p-6 border border-gray-700 rounded-lg">
-              <h3 className="text-xl font-semibold mb-2">
-                Seamless Ticketing System
-              </h3>
+              <h3 className="text-xl font-semibold mb-2">See Events</h3>
               <p className="text-gray-400">
-                Sell and manage event tickets with ease, all in one platform.
+                Browse and explore upcoming events seamlessly in one place.
               </p>
             </div>
             <div className="p-6 border border-gray-700 rounded-lg">
-              <h3 className="text-xl font-semibold mb-2">
-                Real-Time Analytics
-              </h3>
+              <h3 className="text-xl font-semibold mb-2">Secure Login</h3>
               <p className="text-gray-400">
-                Track ticket sales, attendees, and engagement in real-time.
+                Access your account securely with advanced authentication
+                methods.
               </p>
             </div>
           </div>
